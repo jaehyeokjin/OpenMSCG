@@ -47,7 +47,9 @@ class Table:
                 self.f[i] = self.f[i+1] + df
                 self.u[i] = (self.f[i+1] + 0.5 * df) * (self.x[i+1] - self.x[i]) + self.u[i+1]
                 i-=1
-    
+
+        self.u -= self.u[-1]
+
     def padding_low2(self, model_min):
         i = 0
         
@@ -62,7 +64,7 @@ class Table:
             self.u[i] = (self.f[i+1] + 0.5 * df) * (self.x[i+1] - self.x[i]) + self.u[i+1]
             i-=1
             
-            
+        self.u -= self.u[-1]     
     
     def padding_high(self, model_max):
         i = self.n-1
